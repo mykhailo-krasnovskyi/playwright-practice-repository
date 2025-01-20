@@ -10,9 +10,13 @@
   "devDependencies": {
     "@faker-js/faker": "^9.3.0",
     "@playwright/test": "^1.49.1",
-    "@types/node": "^22.10.2"
+    "@testomatio/reporter": "^1.6.12",
+    "@types/node": "^22.10.2",
+    "allure-playwright": "^3.0.9"
   },
   "dependencies": {
-    "dotenv": "^16.4.7"
+    "allure-commandline": "^2.32.0",
+    "dotenv": "^16.4.7",
+    "playwright-testrail-reporter": "^1.2.1"
   }
 }

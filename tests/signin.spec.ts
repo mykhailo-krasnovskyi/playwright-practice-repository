@@ -3,7 +3,7 @@ import HomePage from '../page-objects/pages/HomePage';
 import SignInForm from '../page-objects/forms/SignInForm';
 import { SIGNIN_EMPTY_EMAIL, SIGNIN_EMPTY_PASSWORD, SIGNIN_INVALID_EMAIL, SIGNIN_WRONG_DATA } from '../test-data/constants/errors';
 
-test.describe.only(('Sign In tests with POM'), () => {
+test.describe(('Sign In tests with POM'), () => {
     let homePage: HomePage;
     let signInForm: SignInForm;
 
@@ -15,7 +15,7 @@ test.describe.only(('Sign In tests with POM'), () => {
     })
 
 
-    test('Sign In without email', async ({ page }) => {
+    test.only('C1 Sign In without email', async ({ page }) => {
         await signInForm.triggerErrorOnField('email');
         await expect(page.getByText(SIGNIN_EMPTY_EMAIL)).toBeVisible();
     });
@@ -31,7 +31,7 @@ test.describe.only(('Sign In tests with POM'), () => {
     });
 
     test('Successful Sign In', async ({ page }) => {
-        await signInForm.loginWithCredentials('michael.krasnovskyi+testUser1@gmail.com', 'ZSgeVQhuU3qkvlG')
+        //   await signInForm.loginWithCredentials('michael.krasnovskyi+testUser1@gmail.com', 'ZSgeVQhuU3qkvlG')
         await expect(page.locator('//h1[text()="Garage"]')).toBeVisible();
     });
 
