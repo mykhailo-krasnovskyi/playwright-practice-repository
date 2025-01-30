@@ -54,6 +54,85 @@ test.describe(('Garage tests with POM'), () => {
         expect('BMW X6').toBe(await garagePage.getLastAddedCarName());
     });
 
+    test('Add Ford Fiesta With mocking(failed) ', async ({ page }) => {
+        //await garagePage.addCarByBrandAndModel('Ford', 'Fiesta');
+
+        const responseBody = {
+            "status": "ok",
+            "data": [
+                {
+                    "id": 236479,
+                    "carBrandId": 3,
+                    "carModelId": 11,
+                    "initialMileage": 555,
+                    "updatedMileageAt": "2025-01-27T17:31:30.000Z",
+                    "carCreatedAt": "2025-01-27T17:31:30.000Z",
+                    "mileage": 555,
+                    "brand": "Ford",
+                    "model": "Fiesta",
+                    "logo": "ford.png"
+                },
+                {
+                    "id": 236476,
+                    "carBrandId": 1,
+                    "carModelId": 3,
+                    "initialMileage": 555,
+                    "updatedMileageAt": "2025-01-27T17:23:50.000Z",
+                    "carCreatedAt": "2025-01-27T17:23:50.000Z",
+                    "mileage": 555,
+                    "brand": "Audi",
+                    "model": "Q7",
+                    "logo": "audi.png"
+                },
+                {
+                    "id": 235330,
+                    "carBrandId": 3,
+                    "carModelId": 11,
+                    "initialMileage": 500,
+                    "updatedMileageAt": "2025-01-24T18:38:52.000Z",
+                    "carCreatedAt": "2025-01-24T18:38:52.000Z",
+                    "mileage": 500,
+                    "brand": "Ford",
+                    "model": "Fiesta",
+                    "logo": "ford.png"
+                },
+                {
+                    "id": 235329,
+                    "carBrandId": 1,
+                    "carModelId": 1,
+                    "initialMileage": 500,
+                    "updatedMileageAt": "2025-01-24T18:38:52.000Z",
+                    "carCreatedAt": "2025-01-24T18:38:52.000Z",
+                    "mileage": 500,
+                    "brand": "Audi",
+                    "model": "TT",
+                    "logo": "audi.png"
+                },
+                {
+                    "id": 235328,
+                    "carBrandId": 2,
+                    "carModelId": 9,
+                    "initialMileage": 500,
+                    "updatedMileageAt": "2025-01-24T18:38:20.000Z",
+                    "carCreatedAt": "2025-01-24T18:38:20.000Z",
+                    "mileage": 500,
+                    "brand": "BMW",
+                    "model": "X6",
+                    "logo": "bmw.png"
+                },
+            ]
+        }
+
+        // await page.route('**/api/cars', route => route.fulfill({
+        //     status: 200,
+        //     body: JSON.stringify(responseBody),
+        // }));
+        await page.route('**/api/cars', route => route.abort());
+        await garagePage.openPage();
+
+        expect('Ford Fiesta').toBe(await garagePage.getLastAddedCarName());
+    });
+
 })
 
 
