@@ -1,6 +1,6 @@
 import { expect, Locator, chromium, Page } from '@playwright/test';
 import { mergeTests } from '@playwright/test';
-import { test } from '../test-data/fixtures/index';
+import { test } from '../../test-data/fixtures/index';
 
 
 test.describe(('Garage Page with fixtures'), () => {

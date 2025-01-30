@@ -1,7 +1,7 @@
 import { test, expect, Locator } from '@playwright/test';
-import HomePage from '../page-objects/pages/HomePage';
-import SignInForm from '../page-objects/forms/SignInForm';
-import { SIGNIN_EMPTY_EMAIL, SIGNIN_EMPTY_PASSWORD, SIGNIN_INVALID_EMAIL, SIGNIN_WRONG_DATA } from '../test-data/constants/errors';
+import HomePage from '../../page-objects/pages/HomePage';
+import SignInForm from '../../page-objects/forms/SignInForm';
+import { SIGNIN_EMPTY_EMAIL, SIGNIN_EMPTY_PASSWORD, SIGNIN_INVALID_EMAIL, SIGNIN_WRONG_DATA } from '../../test-data/constants/errors';
 
 test.describe(('Sign In tests with POM'), () => {
     let homePage: HomePage;

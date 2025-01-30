@@ -1,7 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
-require('dotenv').config({
-  path: `.env.dev`
-});
+require('dotenv').config();
 
 /**
  * Read environment variables from file.
@@ -46,6 +44,7 @@ export default defineConfig({
     {
       name: 'regression',
       use: { ...devices['Desktop Chrome'] },
+      testMatch: '*/e2e/*.ts',
       dependencies: ['setup']
     },
 
@@ -53,6 +52,11 @@ export default defineConfig({
       name: 'api-tests',
       use: { ...devices['Desktop Chrome'] },
       testMatch: '**api/*.spec.ts'
+    },
+
+    {
+      name: 'general',
+      use: { ...devices['Desktop Chrome'] },
     },
 
 

@@ -29,12 +29,29 @@ export default class CarsController {
         return await response.json();
     }
 
-    async deleteCarById(id: number, cookies) {
+    async deleteCarById(id: number, cookies: string) {
         const response = await this.request.delete(`/api/cars/${id}`, {
             headers: {
                 'Cookie': `sid=${cookies}`
-            }
+            },
+
         });
+        return await response.json();
+    }
+
+
+    async addCar(brandId: number, modelId: number, mileage: number, cookies: string) {
+        const response = await this.request.post(`/api/cars/`,
+            {
+                data: {
+                    "carBrandId": brandId,
+                    "carModelId": modelId,
+                    "mileage": mileage
+                },
+                headers: {
+                    'Cookie': `sid=${cookies}`
+                }
+            });
         return await response.json();
     }
 
