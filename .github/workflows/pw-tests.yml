@@ -16,7 +16,7 @@ jobs:
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
+      run: npx playwright install chromium --with-deps
     - name: Run Playwright tests
       run: npx playwright test --project=regression
     - uses: actions/upload-artifact@v4
@@ -25,3 +25,28 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+
+  deploy:
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    needs: test
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Download Playwright report artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: playwright-report
+          path: out
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Upload artifact to Pages
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: out
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
