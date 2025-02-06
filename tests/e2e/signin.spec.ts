@@ -3,7 +3,7 @@ import HomePage from '../../page-objects/pages/HomePage';
 import SignInForm from '../../page-objects/forms/SignInForm';
 import { SIGNIN_EMPTY_EMAIL, SIGNIN_EMPTY_PASSWORD, SIGNIN_INVALID_EMAIL, SIGNIN_WRONG_DATA } from '../../test-data/constants/errors';
 
-test.describe(('Sign In tests with POM'), () => {
+test.describe.only(('Sign In tests with POM'), () => {
     let homePage: HomePage;
     let signInForm: SignInForm;
 
@@ -15,7 +15,7 @@ test.describe(('Sign In tests with POM'), () => {
     })
 
 
-    test.only('C1 Sign In without email', async ({ page }) => {
+    test('C1 Sign In without email', async ({ page }) => {
         await signInForm.triggerErrorOnField('email');
         await expect(page.getByText(SIGNIN_EMPTY_EMAIL)).toBeVisible();
     });
