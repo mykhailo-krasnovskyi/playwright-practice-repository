@@ -4,6 +4,12 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  workflow_dispatch:
+    inputs:
+      test_options:
+        description: 'Test options for the run'
+        required: false
+        default: '--project=regression'
 jobs:
   test:
     timeout-minutes: 60
@@ -18,7 +24,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install chromium --with-deps
     - name: Run Playwright tests
-      run: npx playwright test --project=regression
+      run: npx playwright test ${{ inputs.test_options }}
     - uses: actions/upload-artifact@v4
       if: always()
       with:
